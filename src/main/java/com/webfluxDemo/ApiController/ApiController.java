@@ -110,6 +110,24 @@ public class ApiController {
         return Flux.fromIterable(integerList).delayElements(Duration.ofMillis(100));
     }
 
+    @RequestMapping(value="v1/getWith2sLatency", method = RequestMethod.GET, produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Integer> getWith2sLatency() {
+        List<Integer> integerList = new ArrayList<Integer>();
+        for(int i=0; i<=9; i++) {
+            integerList.add(i);
+        }
+        return Flux.fromIterable(integerList).delayElements(Duration.ofMillis(200));
+    }
+
+    @RequestMapping(value="v1/postWith5sLatency", method = RequestMethod.POST, produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Integer> postWith5sLatency() {
+        List<Integer> integerList = new ArrayList<Integer>();
+        for(int i=0; i<=9; i++) {
+            integerList.add(i);
+        }
+        return Flux.fromIterable(integerList).delayElements(Duration.ofMillis(500));
+    }
+
     @RequestMapping(value="v1/getWith10sLatency", method = RequestMethod.GET, produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Integer> getWith10sLatency() {
         List<Integer> integerList = new ArrayList<Integer>();
